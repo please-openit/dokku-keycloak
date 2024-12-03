@@ -1,0 +1,28 @@
+{
+  "name": "Keycloak",
+  "description": "Keycloak SSO.",
+  "keywords": [
+    "quarkus",
+    "keycloak"
+  ],
+  "scripts": {
+    "dokku": {
+      "predeploy": "./build.sh"
+    }
+  },
+  "addons": [
+    "kc_postgres"
+  ],
+  "healthchecks": {
+    "web": [
+        {
+            "type":        "startup",
+            "name":        "web check",
+            "description": "Checking if the app responds to the /health/ready endpoint",
+            "path":        "/health/ready",
+            "attempts": 15,
+            "port": 9000
+        }
+    ]
+  }
+}
